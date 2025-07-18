@@ -1,0 +1,282 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GGLCA Durga Puja 2025 - Anandotsab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lora&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-lora text-gray-800 bg-gradient-to-b from-orange-200 to-red-200">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-700 to-purple-800 text-white sticky top-0 z-20 shadow-2xl">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="images/gglca-logo.png" alt="GGLCA Logo" class="h-20 mr-4 animate-pulse">
+                <h1 class="text-4xl font-cinzel">GGLCA Durga Puja 2025</h1>
+            </div>
+            <nav class="space-x-6 text-lg">
+                <a href="#home" class="hover:text-yellow-400 hover:underline">Home</a>
+                <a href="#essence" class="hover:text-yellow-400 hover:underline">Essence</a>
+                <a href="#sponsorship" class="hover:text-yellow-400 hover:underline">Sponsorship</a>
+                <a href="#achievements" class="hover:text-yellow-400 hover:underline">Achievements</a>
+                <a href="#media" class="hover:text-yellow-400 hover:underline">Media</a>
+                <a href="#contact" class="hover:text-yellow-400 hover:underline">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-24 text-center text-white overlay relative">
+        <div class="container mx-auto px-4">
+            <h2 class="text-7xl font-cinzel mb-6 animate-bounce">Anandotsab 2025</h2>
+            <p class="text-3xl mb-8">Experience the grandeur of Kolkata’s Durga Puja with GGLCA in Bangalore! Join us for a dazzling celebration of devotion, art, and community.</p>
+            <a href="#contact" class="bg-yellow-500 text-white px-10 py-4 rounded-full hover:bg-yellow-600 text-xl glow-button">Join the Festivities</a>
+            <div class="mt-8 marquee">
+                <span>Joy Maa Durga! Celebrate with GGLCA at Sobha Lakeview Clubhouse, October 9-13, 2025!</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Essence Section -->
+    <section id="essence" class="py-24 mandala-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-cinzel text-center mb-12 text-red-700 fade-in">The Essence of Durga Puja 2025</h2>
+            <p class="text-lg text-gray-700 mb-6">
+                Durga Puja at GGLCA is a radiant celebration of Maa Durga’s triumph, blending Bengali traditions with Bangalore’s multicultural spirit. From October 9-13, 2025, Sobha Lakeview Clubhouse in Bellandur will transform into a vibrant pandal, echoing the grandeur of Kolkata’s UNESCO-recognized Durga Puja. Inspired by our 2024 “Prantik” theme, which celebrated India’s tribal art with sustainable materials, Anandotsab 2025 will immerse you in a dazzling display of clay idols, intricate lighting, and soulful rituals.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 slide-in">
+                <img src="images/pandal-2021.jpg" alt="2021 Durga Puja Pandal" class="rounded-xl shadow-xl max-w-full h-auto">
+                <img src="images/tribal-art.jpg" alt="Tribal Art Decoration" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+            <p class="text-lg text-gray-700 mb-6">
+                Kolkata’s Durga Puja, a global cultural phenomenon, inspires our festivities. Our pandal, adorned with bamboo, jute, and eco-friendly paints, mirrors the artistry of Sreebhumi’s crore-budget setups or Suruchi Sangha’s award-winning designs. From Mahalaya’s Chandipath chants to Dashami’s sindoor khela, every ritual is a testament to devotion. Our 50+ member families, from tech professionals to children, craft decorations, creating a community-driven spectacle that rivals Kolkata’s pandal-hopping culture.
+            </p>
+            <div class="flex justify-center mb-8 slide-in">
+                <img src="images/ritual.jpg" alt="Durga Puja Ritual" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+            <p class="text-lg text-gray-700 mb-6">
+                The festival kicks off with Mahalaya, invoking Maa Durga’s arrival, followed by five days of festivities from Shashti to Dashami. Expect dhunuchi naach under twinkling lights, Rabindra Sangeet performances, and dance dramas that capture Bengal’s soul. Our pandal will feature sustainable designs, inspired by Kolkata’s Lalabagan Nabankur, which used 8,000 plants in 2024 to promote reforestation. Food stalls will serve authentic Bengali delicacies like khichuri, luchi, and payesh, creating a sensory feast that transports you to Kolkata’s bustling streets.
+            </p>
+            <p class="text-lg text-gray-700 mb-6">
+                Sustainability is at the heart of our celebration. Like Kolkata’s Serader Sera Nirmal Puja Puroskar winners, we use biodegradable materials and non-toxic paints, honoring Maa Durga’s connection to nature. Our 2025 theme will blend tribal art with modern creativity, creating a pandal that’s both a visual marvel and an environmental statement. From the rhythmic beats of the dhak to the fragrance of dhuno, every element invites you to immerse yourself in the magic of Durga Puja.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 slide-in">
+                <img src="images/performance.jpg" alt="Cultural Performance" class="rounded-xl shadow-xl max-w-full h-auto">
+                <img src="images/community.jpg" alt="Community Gathering" class="rounded-xl shadow-xl max-w-full h-auto">
+                <img src="images/decoration.jpg" alt="Pandal Decoration" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+            <p class="text-lg text-gray-700 mb-6">
+                GGLCA’s Durga Puja is a cultural bridge, uniting Bangalore’s diverse communities in a celebration of art and spirituality. Our pandal, crafted by local artisans and inspired by Kumartuli’s workshops, features handcrafted idols that embody Maa Durga’s divine power. The festival’s economic impact, like Kolkata’s ₹32,000 crore contribution in 2019, highlights its significance as a cultural and economic powerhouse. Join us to experience pandal-hopping, live performances, and the warmth of community, creating memories that resonate with Bengal’s heart.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 slide-in">
+                <img src="images/idol.jpg" alt="Durga Idol" class="rounded-xl shadow-xl max-w-full h-auto">
+                <img src="images/lighting.jpg" alt="Pandal Lighting" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+            <p class="text-lg text-gray-700 mb-6">
+                From the Kola Bou ritual to the visarjan procession, every moment is steeped in tradition. Our cultural programs feature local talents, from children performing folk dances to professionals staging Tagore’s plays. The pandal’s lighting, inspired by Kolkata’s dazzling displays, creates a magical ambiance, while food stalls offer a taste of Bengal’s culinary heritage. Anandotsab 2025 is a celebration of life, creativity, and unity, inviting all to join in the joy of Maa Durga’s blessings.
+            </p>
+            <div class="flex justify-center slide-in">
+                <img src="images/dance.jpg" alt="Dhunuchi Naach" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsorship Section -->
+    <section id="sponsorship" class="py-24 bg-gradient-to-r from-yellow-100 to-orange-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-cinzel text-center mb-12 text-red-700 fade-in">Sponsorship Opportunities</h2>
+            <p class="text-lg text-gray-700 mb-6">
+                Be a part of GGLCA’s Anandotsab 2025 and shine in the spotlight of Bangalore’s vibrant Durga Puja! Our festival at Sobha Lakeview Clubhouse will attract thousands, offering brands a platform to connect with diverse audiences, from families to professionals. Inspired by Kolkata’s high-profile pujas, where brands like HM Group and HDFC Bank gain massive exposure, your sponsorship will fuel our grand pandals, cultural programs, and community initiatives.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 slide-in">
+                <div class="bg-white p-8 rounded-xl shadow-2xl border border-gold-500">
+                    <h3 class="text-2xl font-cinzel mb-4 text-red-700">Platinum Sponsorship</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Prime logo placement in pandal, website, and Annual Souvenir – Anandotsab</li>
+                        <li>Exclusive stall space at Sobha Lakeview Clubhouse</li>
+                        <li>Featured social media campaigns on Facebook and Instagram</li>
+                        <li>Stage mentions during cultural events</li>
+                        <li>VIP access to puja ceremonies</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-2xl border border-gold-500">
+                    <h3 class="text-2xl font-cinzel mb-4 text-red-700">Gold Sponsorship</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Logo in pandal, website, and souvenir</li>
+                        <li>Shared stall space</li>
+                        <li>Social media shoutouts</li>
+                        <li>Recognition in event announcements</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-2xl border border-gold-500">
+                    <h3 class="text-2xl font-cinzel mb-4 text-red-700">Silver Sponsorship</h3>
+                    <ul class="list-disc list-inside text-gray-700">
+                        <li>Logo on website and souvenir</li>
+                        <li>Mention in event promotions</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-lg text-gray-700 mb-6">
+                Sponsorship supports our eco-friendly pandal designs, cultural performances, and community welfare initiatives like free health camps. Contact us at <a href="mailto:info@gglca.com" class="text-red-700 hover:underline">info@gglca.com</a> or +91 9513333850 to explore tailored sponsorship packages. Align with a festival that mirrors Kolkata’s ₹32,000 crore economic impact, creating lasting connections with Bangalore’s community.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 slide-in">
+                <img src="images/food.jpg" alt="Bhog Offering" class="rounded-xl shadow-xl max-w-full h-auto">
+                <img src="images/bhog.jpg" alt="Community Bhog" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+            <p class="text-lg text-gray-700 mb-6">
+                Our sponsorship model draws from Kolkata’s award-winning pujas, recognized by Asian Paints Sharad Shamman and Biswa Bangla Sharad Samman. Your brand will be part of a cultural phenomenon, showcased alongside artisans’ handcrafted idols and vibrant performances. Join us to support a festival that celebrates creativity, sustainability, and unity, creating a memorable impact in Bangalore’s cultural landscape.
+            </p>
+            <div class="flex justify-center slide-in">
+                <img src="images/artisans.jpg" alt="Artisan Work" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-24 mandala-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-cinzel text-center mb-12 text-red-700 fade-in">Our Achievements</h2>
+            <p class="text-lg text-gray-700 mb-6">
+                Since 2017, GGLCA has been a cultural beacon in Green Glen Layout, Bellandur, fostering unity through vibrant festivals and community initiatives. Our achievements reflect our commitment to preserving Bengali heritage while embracing Bangalore’s multicultural ethos, inspired by Kolkata’s world-renowned Durga Puja.
+            </p>
+            <ul class="list-disc list-inside text-lg text-gray-700 mb-6">
+                <li><strong>Innovative Themes</strong>: Recognized for our 2024 “Prantik” theme, celebrating India’s tribal art with sustainable decorations, crafted by 50+ member families.</li>
+                <li><strong>Annual Events</strong>: Hosting 8+ cultural events yearly, including Confluence, Kali Puja, and Saraswati Puja, uniting diverse communities.</li>
+                <li><strong>Literary Contributions</strong>: Publishing the Annual Souvenir – Anandotsab and e-magazine Udbhas, showcasing community talents.</li>
+                <li><strong>Community Welfare</strong>: Organizing free health camps and exclusive member discounts, enhancing local well-being.</li>
+                <li><strong>Cultural Hub</strong>: Building a platform for professionals and families to celebrate Indian traditions, earning recognition in Bangalore.</li>
+                <li><strong>Eco-Friendly Practices</strong>: Adopting sustainable materials, inspired by Kolkata’s Serader Sera Nirmal Puja Puroskar winners, for pandal decorations.</li>
+            </ul>
+            <p class="text-lg text-gray-700 mb-6">
+                While specific awards are not documented, GGLCA’s excellence mirrors Kolkata’s award-winning pujas, recognized by Asian Paints Sharad Shamman since 1985. Our 2024 pandal, with its tribal art focus, drew thousands, much like Kolkata’s 3,000+ Barowari pujas in 2022. By collaborating with local artisans and leveraging community talent, we create pandals that rival the artistry of Chetla Agrani or Kumartuli Park.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 slide-in">
+                <img src="images/community.jpg" alt="Community Event" class="rounded-xl shadow-xl max-w-full h-auto">
+                <img src="images/decoration.jpg" alt="Eco-Friendly Decoration" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+            <p class="text-lg text-gray-700 mb-6">
+                Our commitment to sustainability, inspired by Kolkata’s green pujas, ensures our celebrations honor Maa Durga’s connection to nature. From biodegradable decorations to community-driven events, GGLCA fosters a legacy of creativity and unity, making Anandotsab a highlight in Bangalore’s cultural calendar.
+            </p>
+            <div class="flex justify-center slide-in">
+                <img src="images/idol.jpg" alt="Durga Idol" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section id="media" class="py-24 bg-gradient-to-r from-orange-100 to-yellow-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-5xl font-cinzel text-center mb-12 text-red-700 fade-in">Share & Celebrate: Durga Puja Moments</h2>
+            <p class="text-lg text-gray-700 mb-6 text-center">
+                Capture the magic of Anandotsab 2025! Upload your images and videos to share with the GGLCA community, or explore our curated carousel of past celebrations, featuring rituals, performances, and pandal artistry.
+            </p>
+            <div class="flex justify-center mb-8">
+                <input type="file" id="mediaUpload" accept="image/*,video/*" multiple class="p-3 border rounded-lg bg-white">
+                <button onclick="uploadMedia()" class="bg-red-700 text-white px-6 py-3 rounded-full ml-4 hover:bg-red-800 glow-button">Upload</button>
+            </div>
+            <div id="mediaPreview" class="media-preview grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 carousel"></div>
+            <h3 class="text-3xl font-cinzel text-center mb-6 text-red-700">Featured Media</h3>
+            <p class="text-lg text-gray-700 mb-6">
+                Our gallery showcases the vibrancy of GGLCA’s Durga Puja, from handcrafted idols to electrifying dhunuchi naach. Inspired by Kolkata’s pandal-hopping culture, where millions visit iconic setups like Bagbazar, our media captures the essence of Anandotsab. Enjoy videos of dhak beats, dance dramas, and pandal tours, reflecting our festive grandeur.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 slide-in">
+                <video controls class="rounded-xl shadow-xl">
+                    <source src="videos/puja-ritual.mp4" type="video/mp4">
+                </video>
+                <video controls class="rounded-xl shadow-xl">
+                    <source src="videos/cultural-performance.mp4" type="video/mp4">
+                </video>
+                <video controls class="rounded-xl shadow-xl">
+                    <source src="videos/pandal-tour.mp4" type="video/mp4">
+                </video>
+            </div>
+            <p class="text-lg text-gray-700 mb-6">
+                Upload your photos and videos to become part of our vibrant tapestry, or add custom media to the repository to showcase 2025 moments. From the rhythmic dhak to the intricate tribal-themed pandal, every upload tells a story of devotion and celebration, echoing Kolkata’s festive spirit.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 slide-in">
+                <img src="images/dance.jpg" alt="Dhunuchi Naach" class="rounded-xl shadow-xl max-w-full h-auto">
+                <img src="images/bhog.jpg" alt="Community Bhog" class="rounded-xl shadow-xl max-w-full h-auto">
+                <img src="images/artisans.jpg" alt="Artisan Work" class="rounded-xl shadow-xl max-w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-r from-red-700 to-purple-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl font-cinzel mb-12 fade-in">Join Us for Durga Puja 2025</h2>
+            <p class="text-lg mb-6">
+                Connect with GGLCA to celebrate, sponsor, or become a member! Join us at Sobha Lakeview Clubhouse for Anandotsab 2025, a festival of joy and unity.
+            </p>
+            <div class="flex justify-center space-x-8 mb-6">
+                <a href="https://www.facebook.com/UGGLCA" class="hover:text-yellow-400" target="_blank">
+                    <i class="fab fa-facebook-f fa-3x"></i>
+                </a>
+                <a href="https://www.instagram.com/gglca_bangalore/" class="hover:text-yellow-400" target="_blank">
+                    <i class="fab fa-instagram fa-3x"></i>
+                </a>
+                <a href="mailto:info@gglca.com" class="hover:text-yellow-400">
+                    <i class="fas fa-envelope fa-3x"></i>
+                </a>
+            </div>
+            <p class="text-lg">Phone: +91 9513333850 | Email: info@gglca.com</p>
+            <p class="text-lg mt-4">Location: Sobha Lakeview Clubhouse, Bellandur, Bangalore</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg">© 2025 Green Glen Layout Cultural Association. All Rights Reserved.</p>
+            <p class="text-lg mt-2">An initiative by Pracheshta Socio Cultural Trust</p>
+            <p class="text-lg mt-2">
+                <a href="https://gglca.in" class="hover:underline" target="_blank">Visit GGLCA Website</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
