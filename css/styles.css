@@ -97,7 +97,6 @@ body {
     padding-left: 100%;
     animation: marquee 15s linear infinite;
     color: #FFD700;
-    font-size: 1.5rem;
     font-family: 'Cinzel', serif;
 }
 
@@ -116,4 +115,37 @@ body {
 .carousel > div {
     flex: 0 0 auto;
     scroll-snap-align: start;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 640px) {
+    body {
+        background-attachment: scroll; /* Prevent fixed background issues on mobile */
+    }
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .marquee span {
+        font-size: 0.9rem; /* Smaller marquee text on mobile */
+    }
+
+    .carousel > div {
+        width: 100%;
+        max-width: 100%; /* Full-width carousel items on mobile */
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+    }
+
+    .glow-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
 }
